@@ -20,7 +20,7 @@ Synopsis
     #include <iostream>
     #include <bf.h>
 
-    int main()
+    int main(void)
     {
       bf::basic_bloom_filter b(0.8, 100);
 
