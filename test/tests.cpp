@@ -1,3 +1,8 @@
+
+#if defined(BUILD_MONOLITHIC)
+#define main bloomfilters_test_main
+#endif
+
 #include "test.hpp"
 
 #include "bf/all.hpp"

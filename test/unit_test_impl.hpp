@@ -251,7 +251,7 @@ logger::logger()
   // nop
 }
 
-void engine::args(int argc, char** argv) {
+void engine::args(int argc, const char** argv) {
   instance().argc_ = argc;
   instance().argv_ = argv;
 }
@@ -260,15 +260,15 @@ int engine::argc() {
   return instance().argc_;
 }
 
-char** engine::argv() {
+const char** engine::argv() {
   return instance().argv_;
 }
 
-void engine::path(char* argv) {
+void engine::path(const char* argv) {
   instance().path_ = argv;
 }
 
-char* engine::path() {
+const char* engine::path() {
   return instance().path_;
 }
 
@@ -532,7 +532,8 @@ std::string engine::render(std::chrono::microseconds t) {
                               (std::to_string(t.count()) + " us");
 }
 
-int main(int argc, char** argv) {
+extern "C"
+int main(int argc, const char** argv) {
   // set path of executable
   engine::path(argv[0]);
   // default values.
@@ -588,7 +589,7 @@ int main(int argc, char** argv) {
   //  return 1;
   //}
   // auto colorize = res.opts.count("no-colors") == 0;
-  std::vector<char*> args;
+  std::vector<const char*> args;
   if (divider < argc) {
     // make a new args vector that contains argv[0] and all remaining args
     args.push_back(argv[0]);

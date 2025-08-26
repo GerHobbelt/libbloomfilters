@@ -38,7 +38,7 @@ public:
   /// Initializes the configuration from command line parameters.
   /// @argc The argc parameter from main.
   /// @param argv The argv parameter from main.
-  static trial<Derived> parse(int argc, char* argv[]) {
+  static trial<Derived> parse(int argc, const char** argv) {
     Derived cfg;
 
     // Although we don't like to use exceptions, for the "configuration DSL" we

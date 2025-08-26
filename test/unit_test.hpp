@@ -229,7 +229,7 @@ public:
   /// Sets external command line arguments.
   /// @param argc The argument counter.
   /// @param argv The argument vectors.
-  static void args(int argc, char** argv);
+  static void args(int argc, const char** argv);
 
   /// Retrieves the argument counter.
   /// @returns The number of arguments set via ::args or 0.
@@ -237,15 +237,15 @@ public:
 
   /// Retrieves the argument vector.
   /// @returns The argument vector set via ::args or `nullptr`.
-  static char** argv();
+  static const char** argv();
 
   /// Sets path of current executable.
   /// @param argv The path of current executable.
-  static void path(char* argv);
+  static void path(const char* argv);
 
   /// Retrieves the path of current executable
   /// @returns The path to executable set via ::path(char*) or `nullptr`.
-  static char* path();
+  static const char* path();
 
   /// Returns the maximum number of seconds a test case is allowed to run.
   static int max_runtime();
@@ -295,8 +295,8 @@ private:
   static std::string render(std::chrono::microseconds t);
 
   int argc_ = 0;
-  char** argv_ = nullptr;
-  char* path_ = nullptr;
+  const char** argv_ = nullptr;
+  const char* path_ = nullptr;
   const char* colors_[9][2] = {
     {"\033[0m", "\033[0m"},          // reset
     {"\033[30m", "\033[1m\033[30m"}, // black

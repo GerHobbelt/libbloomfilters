@@ -182,7 +182,12 @@ trial<nothing> run(config const& cfg) {
   return nil;
 }
 
-int main(int argc, char* argv[]) {
+#if defined(BUILD_MONOLITHIC)
+#define main bloomfilters_test_bf_main
+#endif
+
+extern "C"
+int main(int argc, const char** argv) {
   auto cfg = config::parse(argc, argv);
   if (!cfg) {
     std::cerr << cfg.failure().msg() << ", try -h or --help" << std::endl;
