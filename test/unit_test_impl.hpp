@@ -28,6 +28,8 @@
 #include <cstring>
 #include <regex>
 #include <thread>
+// fix error C3083: 'high_resolution_clock': the symbol to the left of a '::' must be a type (compiling source file test/tests.cpp)
+#include <chrono>
 
 #include "unit_test.hpp"
 
@@ -41,7 +43,8 @@ public:
 
 private:
   watchdog(int secs) {
-    thread_ = std::thread{[=] {
+	// fix warning C4855: implicit capture of 'this' via '[=]' is deprecated in '/std:c++20'
+    thread_ = std::thread{[this, secs] {
       auto tp =
         std::chrono::high_resolution_clock::now() + std::chrono::seconds(secs);
       std::unique_lock<std::mutex> guard{mtx_};

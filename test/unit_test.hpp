@@ -116,7 +116,11 @@ public:
 namespace detail {
 
 // thrown when a required check fails
-class require_error : std::logic_error {
+//
+// public std::logic_error fixes:
+// - warning C4673: throwing 'caf::test::detail::require_error' the following types will not be considered at the catch site
+// - warning C4670: 'logic_error': this base class is inaccessible
+class require_error : public std::logic_error {
 public:
   require_error(const std::string& msg);
   require_error(const require_error&) = default;
